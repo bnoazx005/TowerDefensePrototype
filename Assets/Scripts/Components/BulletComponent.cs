@@ -10,9 +10,11 @@
 
 public class BulletComponent : MonoBehaviour
 {
-	public float   mDamage;
+	public float          mDamage;
 
-	public float   mSpeed;
+	public float          mSpeed;
 
-	public Vector3 mTargetPosition;
+	public Vector3        mTargetPosition;
+
+	public EnemyComponent mDamagedEnemy; // null if no enemy was hit, component's reference in other way
 }

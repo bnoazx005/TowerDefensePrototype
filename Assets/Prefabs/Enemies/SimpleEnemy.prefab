@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2775505320179285594}
   - component: {fileID: 2775505320179285573}
   - component: {fileID: 2775505320179285574}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SimpleEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,3 +119,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCurrWaypoint: {fileID: 0}
   mConfigs: {fileID: 11400000, guid: 0984099997fa4b340a30263aff07c434, type: 2}
+  mHealth: 0
