@@ -11,6 +11,8 @@ using Unity.Entities;
 
 public class TurretsLogicSystem : ComponentSystem
 {
+	protected Transform mBulletsRootTransform;
+
 	protected struct TTurretGroup
 	{
 		public GunComponent mGun;
@@ -19,6 +21,11 @@ public class TurretsLogicSystem : ComponentSystem
 	protected struct TEnemyGroup
 	{
 		public EnemyComponent mEnemy;
+	}
+
+	protected override void OnStartRunning()
+	{
+		mBulletsRootTransform = new GameObject("BulletsList_Root").GetComponent<Transform>();
 	}
 
 	protected override void OnUpdate()
@@ -54,9 +61,9 @@ public class TurretsLogicSystem : ComponentSystem
 		/// shooting logic
 		if (gun.mElapsedReloadingTime > gunConfigs.mReloadInterval)
 		{
-			_makeShot();
+			_makeShot(gunTransform, gunConfigs, enemyTransform.position);
 
-			gun.mElapsedReloadingTime = 0.0f;
+			gun.mElapsedReloadingTime = 0.0f; // starts to wait for an end of a reloading cycle
 
 			return;
 		}
@@ -102,8 +109,15 @@ public class TurretsLogicSystem : ComponentSystem
 		return nearestEnemy;
 	}
 
-	protected void _makeShot()
+	protected void _makeShot(Transform gunTransform, BaseGunConfig gunConfigs, Vector3 enemyTargetPosition)
 	{
-		Debug.Log("Shot");
+		/// create a new instance of a bullet prefab
+		GameObject bulletInstance = GameObject.Instantiate(gunConfigs.mBulletPrefab, gunTransform.position, Quaternion.identity, mBulletsRootTransform);
+
+		BulletComponent bulletComponent = bulletInstance.GetComponent<BulletComponent>();
+
+		bulletComponent.mDamage         = gunConfigs.mDamage;
+		bulletComponent.mSpeed          = gunConfigs.mBulletSpeed;
+		bulletComponent.mTargetPosition = enemyTargetPosition;
 	}
 }

@@ -10,9 +10,13 @@ using UnityEngine;
 
 public abstract class BaseGunConfig : ScriptableObject
 {
-	public float mDamage;
+	public float      mDamage;
 
-	public float mRadius;
+	public float      mRadius;
 
-	public float mReloadInterval;
+	public float      mBulletSpeed;
+
+	public float      mReloadInterval;
+
+	public GameObject mBulletPrefab;
 }
