@@ -11,4 +11,6 @@ public class EnemyComponent : MonoBehaviour
     public WaypointComponent mCurrWaypoint = null; /// when mCurrWaypoint equals to null the enemy will try to find first waypoint of a path
 
     public BaseEnemyConfig   mConfigs;
+
+    public float             mHealth;
 }
