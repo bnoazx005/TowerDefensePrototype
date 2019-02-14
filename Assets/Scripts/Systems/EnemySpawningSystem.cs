@@ -56,6 +56,10 @@ public class EnemySpawningSystem : ComponentSystem
 			enemyComponent.mHealth       = enemyComponent.mConfigs.mHealth; 
 			enemyComponent.mCurrWaypoint = enemySpawner.mStartWaypoint;
 
+			/// update enemy's UI
+			HealthBarView healthBarView = enemyComponent.GetComponentInChildren<HealthBarView>();
+			healthBarView.CurrNormalizedHealth = 1.0f;
+
 			/// reset spawning timer
 			enemySpawner.mCurrSpawningTimer = 0.0f;
 		}

@@ -36,7 +36,12 @@ public class DamageEnemiesSystem : ComponentSystem
 			return false;
 		}
 
-		damagedEnemy.mHealth = Mathf.Max(0.0f, damagedEnemy.mHealth - bullet.mDamage);
+		HealthBarView healthBarView = damagedEnemy.GetComponentInChildren<HealthBarView>();
+
+		float newHealth = Mathf.Max(0.0f, damagedEnemy.mHealth - bullet.mDamage);
+
+		healthBarView.CurrNormalizedHealth = newHealth / damagedEnemy.mConfigs.mHealth; /// compute normalized health's value 
+		damagedEnemy.mHealth               = newHealth;
 
 		/// destroy enemy's view
 		if (damagedEnemy.mHealth < 1e-3f)
