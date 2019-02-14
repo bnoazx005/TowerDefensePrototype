@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: SimpleEnemy_Config
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyConfig
-  mHealth: 100
-  mSpeed: 1.5
+  m_Script: {fileID: 11500000, guid: 2b0e4247438584e4e94d49645c2eb4be, type: 3}
+  m_Name: MachineGun_Config
+  m_EditorClassIdentifier: 
+  mDamage: 30
+  mRadius: 15
+  mReloadInterval: 0.5
