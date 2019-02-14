@@ -46,7 +46,10 @@ public class DamageEnemiesSystem : ComponentSystem
 		/// destroy enemy's view
 		if (damagedEnemy.mHealth < 1e-3f)
 		{
-			GameObject.Destroy(damagedEnemy.gameObject);
+			DestroyedComponent destroyedComponent = damagedEnemy.GetComponent<DestroyedComponent>();
+			
+			destroyedComponent.mShouldBeDestroyed = true;	 /// kill the enemy	
+			//GameObject.Destroy(damagedEnemy.gameObject);
 		}
 
 		/// TODO: return bullet to an object pool of bullets

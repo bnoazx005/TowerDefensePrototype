@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyConfig
   mHealth: 100
   mSpeed: 1.5
+  mDamage: 50

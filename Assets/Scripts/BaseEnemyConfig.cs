@@ -13,4 +13,6 @@ public abstract class BaseEnemyConfig : ScriptableObject
 	public float mHealth;
 
 	public float mSpeed;
+
+	public float mDamage;
 }
