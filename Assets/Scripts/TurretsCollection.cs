@@ -11,7 +11,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Turrets_Collection", menuName = "Turrets Collection", order = 1)]
 public class TurretsCollection: ScriptableObject
 {
-	public List<GameObject> mTurretsPrefabs = new List<GameObject>();
+	[SerializeField]
+	protected List<GameObject> mTurretsPrefabs = new List<GameObject>();
 
 	public GameObject this[int index]
 	{

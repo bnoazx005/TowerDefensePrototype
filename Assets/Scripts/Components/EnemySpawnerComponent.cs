@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 /// <summary>
@@ -10,11 +11,21 @@
 
 public class EnemySpawnerComponent : MonoBehaviour
 {
-    public GameObject        mEnemyPrefab;
-
     public float             mSpawningInterval;
 
     public float             mCurrSpawningTimer;
 
+    public bool              mIsWaitingForNextWave = true;
+
+    public float             mPerWaveRestInterval;
+
+    public float             mCurrPerWaveRestTimer;
+
     public WaypointComponent mStartWaypoint;
+
+    public int               mCurrWaveIndex;
+
+    public int               mCurrEnemyIndex;
+
+    public List<WaveConfig>  mWavesArray;
 }

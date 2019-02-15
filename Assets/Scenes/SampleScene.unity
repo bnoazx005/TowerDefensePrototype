@@ -720,11 +720,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea52eb7c2db8c7f4ebcb457f80ca3fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mEnemyPrefab: {fileID: 2775505320179285595, guid: c8290b3b5eb16e44fb55436f65e975c5,
-    type: 3}
   mSpawningInterval: 5
   mCurrSpawningTimer: 0
+  mPerWaveRestInterval: 5
+  mCurrPerWaveRestTimer: 0
   mStartWaypoint: {fileID: 1126638603}
+  mCurrWaveIndex: 0
+  mCurrEnemyIndex: 0
+  mWavesArray:
+  - {fileID: 11400000, guid: 649b735dcd75a9e4299d3e4f76025341, type: 2}
+  - {fileID: 11400000, guid: ea96d3f53ae0b1a4e97434254bff88d5, type: 2}
+  - {fileID: 11400000, guid: ef8b9c00c0be52149925414ec7c492a2, type: 2}
+  - {fileID: 11400000, guid: d580ab09d235f1649a8736e100b823be, type: 2}
+  - {fileID: 11400000, guid: 069d76e27a4c6e748b3f32036b09bc81, type: 2}
 --- !u!114 &852910114
 MonoBehaviour:
   m_ObjectHideFlags: 0
