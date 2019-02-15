@@ -30,11 +30,9 @@ public class TurretsLogicSystem : ComponentSystem
 
 	protected override void OnUpdate()
 	{
-		var enemies = GetEntities<TEnemyGroup>();
-
 		foreach (var entity in GetEntities<TTurretGroup>())
 		{
-			_processSingleTurret(entity.mGun, enemies);
+			_processSingleTurret(entity.mGun, GetEntities<TEnemyGroup>());
 		}
 	}
 
