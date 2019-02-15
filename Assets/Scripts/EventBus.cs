@@ -15,6 +15,8 @@ public static class EventBus
 
 	public static UnityAction<int>   OnNewWaveIsComing;
 
+	public static UnityAction        OnLevelFinished;
+
 	public static void NotifyOnBaseHealthChanged(float health)
 	{
 		OnBaseHealthChanged?.Invoke(health);
@@ -28,5 +30,10 @@ public static class EventBus
 	public static void NotifyOnNewWaveIsComing(int waveIndex)
 	{
 		OnNewWaveIsComing?.Invoke(waveIndex);
+	}
+
+	public static void NotifyOnLevelFinished()
+	{
+		OnLevelFinished?.Invoke();
 	}
 }

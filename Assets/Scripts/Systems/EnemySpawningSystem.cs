@@ -34,17 +34,24 @@ public class EnemySpawningSystem : ComponentSystem
 
 	protected void _processSingleEnemySpawner(EnemySpawnerComponent enemySpawner, float deltaTime)
 	{
+		int currWaveIndex  = enemySpawner.mCurrWaveIndex;
+		int currEnemyIndex = enemySpawner.mCurrEnemyIndex;
+
 		if (!_waitForNextWave(enemySpawner, deltaTime))
 		{
+			return;
+		}
+
+		if (currWaveIndex >= enemySpawner.mWavesArray.Count)
+		{
+			EventBus.NotifyOnLevelFinished();
+
 			return;
 		}
 
 		Vector3 spawningPosition = enemySpawner.GetComponent<Transform>().position;
 
 		GameObject currEnemyPrefab = null;
-
-		int currWaveIndex  = enemySpawner.mCurrWaveIndex;
-		int currEnemyIndex = enemySpawner.mCurrEnemyIndex;
 
 		WaveConfig currWaveConfig = null;
 
@@ -58,6 +65,8 @@ public class EnemySpawningSystem : ComponentSystem
 			{
 				currWaveIndex  = ++enemySpawner.mCurrWaveIndex;
 				currEnemyIndex = 0;
+
+				enemySpawner.mCurrEnemyIndex = 0;
 
 				enemySpawner.mIsWaitingForNextWave = true;
 
