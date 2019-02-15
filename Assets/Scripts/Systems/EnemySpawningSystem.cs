@@ -114,6 +114,8 @@ public class EnemySpawningSystem : ComponentSystem
 			return false;
 		}
 
+		EventBus.NotifyOnNewWaveIsComing(enemySpawner.mCurrWaveIndex + 1); // a first displaying index will be 1 instead of 0
+
 		enemySpawner.mIsWaitingForNextWave = false;
 
 		enemySpawner.mCurrPerWaveRestTimer = 0.0f;

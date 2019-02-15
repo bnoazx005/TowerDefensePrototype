@@ -13,4 +13,6 @@ public class GamePersistentData : MonoBehaviour
 	public TurretsCollection mTurrets;
 
 	public int               mCurrSelectedTurretIndex = -1;
+
+	public uint              mCurrScore;
 }

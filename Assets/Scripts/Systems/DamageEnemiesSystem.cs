@@ -8,6 +8,7 @@ using Unity.Entities;
 /// The class is a system's implementation that processes taking damage by all enemies
 /// </summary>
 
+[UpdateAfter(typeof(TurretsLogicSystem))]
 public class DamageEnemiesSystem : ComponentSystem
 {
 	protected struct TBulletGroup
@@ -50,6 +51,8 @@ public class DamageEnemiesSystem : ComponentSystem
 			
 			destroyedComponent.mShouldBeDestroyed = true;	 /// kill the enemy	
 			//GameObject.Destroy(damagedEnemy.gameObject);
+
+			EventBus.NotifyOnEnemyDestroyed(damagedEnemy.mConfigs.mReward);
 		}
 
 		/// TODO: return bullet to an object pool of bullets

@@ -15,6 +15,14 @@ public class DamageBaseSystem : ComponentSystem
 		public BaseComponent mBase;
 	}
 
+	protected override void OnStartRunning()
+	{
+		foreach (var entity in GetEntities<TBaseGroup>())
+		{
+			EventBus.NotifyOnBaseHealthChanged(entity.mBase.mHealth);
+		}
+	}
+
 	protected override void OnUpdate()
 	{
 		foreach (var entity in GetEntities<TBaseGroup>())
@@ -35,6 +43,8 @@ public class DamageBaseSystem : ComponentSystem
 		}
 
 		float currHealth = Mathf.Max(0.0f, baseComponent.mHealth - baseComponent.mAttackingEntity.mConfigs.mDamage);
+
+		EventBus.NotifyOnBaseHealthChanged(currHealth);
 
 		baseComponent.mHealth = currHealth;
 

@@ -15,3 +15,4 @@ MonoBehaviour:
   mHealth: 100
   mSpeed: 1.5
   mDamage: 50
+  mReward: 10
