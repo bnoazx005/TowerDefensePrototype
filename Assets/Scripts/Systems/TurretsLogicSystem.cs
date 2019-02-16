@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Unity.Entities;
 
 
@@ -11,7 +12,16 @@ using Unity.Entities;
 
 public class TurretsLogicSystem : ComponentSystem
 {
+	protected struct TInstantiationCommand
+	{
+		public Vector3       mGunPosition;
+		public Vector3       mEnemyTargetPosition;
+		public BaseGunConfig mGunConfigs;
+	}
+
 	protected Transform mBulletsRootTransform;
+
+	protected List<TInstantiationCommand> mInstantiationBuffer; /// used to deffered instantiations of bullets
 
 	protected struct TTurretGroup
 	{
@@ -26,13 +36,23 @@ public class TurretsLogicSystem : ComponentSystem
 	protected override void OnStartRunning()
 	{
 		mBulletsRootTransform = new GameObject("BulletsList_Root").GetComponent<Transform>();
+
+		mInstantiationBuffer = new List<TInstantiationCommand>();
 	}
 
 	protected override void OnUpdate()
 	{
+		mInstantiationBuffer.Clear();
+
 		foreach (var entity in GetEntities<TTurretGroup>())
 		{
 			_processSingleTurret(entity.mGun, GetEntities<TEnemyGroup>());
+		}
+
+		/// deffered instantiation of prebafs
+		foreach (var command in mInstantiationBuffer)
+		{
+			_makeShot(command);
 		}
 	}
 
@@ -59,7 +79,8 @@ public class TurretsLogicSystem : ComponentSystem
 		/// shooting logic
 		if (gun.mElapsedReloadingTime > gunConfigs.mReloadInterval)
 		{
-			_makeShot(gunTransform, gunConfigs, enemyTransform.position);
+			/// create a deffered request for instantiation of a new bullet
+			mInstantiationBuffer.Add(new TInstantiationCommand { mGunPosition = gunTransform.position, mGunConfigs = gunConfigs, mEnemyTargetPosition = enemyTransform.position });
 
 			gun.mElapsedReloadingTime = 0.0f; // starts to wait for an end of a reloading cycle
 
@@ -107,15 +128,17 @@ public class TurretsLogicSystem : ComponentSystem
 		return nearestEnemy;
 	}
 
-	protected void _makeShot(Transform gunTransform, BaseGunConfig gunConfigs, Vector3 enemyTargetPosition)
+	protected void _makeShot(TInstantiationCommand command)
 	{
+		BaseGunConfig gunConfigs = command.mGunConfigs;
+
 		/// create a new instance of a bullet prefab
-		GameObject bulletInstance = GameObject.Instantiate(gunConfigs.mBulletPrefab, gunTransform.position, Quaternion.identity, mBulletsRootTransform);
+		GameObject bulletInstance = GameObject.Instantiate(gunConfigs.mBulletPrefab, command.mGunPosition, Quaternion.identity, mBulletsRootTransform);
 
 		BulletComponent bulletComponent = bulletInstance.GetComponent<BulletComponent>();
 
 		bulletComponent.mDamage         = gunConfigs.mDamage;
 		bulletComponent.mSpeed          = gunConfigs.mBulletSpeed;
-		bulletComponent.mTargetPosition = enemyTargetPosition;
+		bulletComponent.mTargetPosition = command.mEnemyTargetPosition;
 	}
 }

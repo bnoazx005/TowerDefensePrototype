@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Unity.Entities;
 
+using UnityEngine.Experimental.PlayerLoop;
 
 /// <summary>
 /// class DestroyEntitiesSystem
@@ -8,6 +10,7 @@ using Unity.Entities;
 /// The class is a system's implementation that processes all DestroyComponents 
 /// </summary>
 
+[UpdateBefore(typeof(PreLateUpdate))]
 public class DestroyEntitiesSystem : ComponentSystem
 {
 	protected struct TDestroyedGroup
@@ -17,7 +20,7 @@ public class DestroyEntitiesSystem : ComponentSystem
 
 	protected override void OnUpdate()
 	{
-		var entities = GetEntities<TDestroyedGroup>();
+		List<GameObject> toDestroyCommandBuffer = new List<GameObject>();
 
 		DestroyedComponent currDestroyedEntity = null;
 
@@ -30,9 +33,14 @@ public class DestroyEntitiesSystem : ComponentSystem
 				continue;
 			}
 
-			GameObject.Destroy(currDestroyedEntity.gameObject);
+			toDestroyCommandBuffer.Add(currDestroyedEntity.gameObject);
 
 			break;
+		}
+
+		foreach (var currCommand in toDestroyCommandBuffer)
+		{
+			GameObject.Destroy(currCommand);
 		}
 	}
 }

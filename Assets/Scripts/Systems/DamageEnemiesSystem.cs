@@ -56,7 +56,9 @@ public class DamageEnemiesSystem : ComponentSystem
 		}
 
 		/// TODO: return bullet to an object pool of bullets
-		GameObject.Destroy(bullet.gameObject);
+		//GameObject.Destroy(bullet.gameObject);
+		DestroyedComponent destroyedBullet = bullet.GetComponent<DestroyedComponent>();
+		destroyedBullet.mShouldBeDestroyed = true;		
 
 		return true;
 	}

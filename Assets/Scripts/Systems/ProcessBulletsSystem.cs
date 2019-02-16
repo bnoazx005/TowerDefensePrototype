@@ -8,6 +8,7 @@ using Unity.Entities;
 /// The class is a system's implementation that processes all bullets that are fired by turrets
 /// </summary>
 
+[UpdateAfter(typeof(TurretsLogicSystem))]
 public class ProcessBulletsSystem : ComponentSystem
 {
 	protected struct TBulletGroup
@@ -48,7 +49,9 @@ public class ProcessBulletsSystem : ComponentSystem
 		}
 
 		// destroy bullet or better push it back to an object pool
-		GameObject.Destroy(bulletTransform.gameObject);
+		//GameObject.Destroy(bulletTransform.gameObject);
+		DestroyedComponent destroyedBullet = bulletTransform.GetComponent<DestroyedComponent>();
+		destroyedBullet.mShouldBeDestroyed = true;
 
 		return true;
 	}
