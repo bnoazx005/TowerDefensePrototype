@@ -19,4 +19,6 @@ public abstract class BaseGunConfig : ScriptableObject
 	public float      mReloadInterval;
 
 	public GameObject mBulletPrefab;
+
+	public uint       mPrice;
 }

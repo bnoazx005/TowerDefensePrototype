@@ -18,3 +18,4 @@ MonoBehaviour:
   mReloadInterval: 2
   mBulletPrefab: {fileID: 6757325490293719540, guid: 9681e03916fc44142ab4419590c5769a,
     type: 3}
+  mPrice: 100

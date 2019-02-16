@@ -21,9 +21,15 @@ public class GameUIController: MonoBehaviour
 
 		mPersistentData = GameObject.FindObjectOfType<GamePersistentData>();
 
-		EventBus.OnBaseHealthChanged += _onHealthChanged;
-		EventBus.OnEnemyDestroyed    += _onEnemyDestroyed;
-		EventBus.OnNewWaveIsComing   += _onNewWaveIsComming;
+		EventBus.OnBaseHealthChanged   += _onHealthChanged;
+		EventBus.OnEnemyDestroyed      += _onEnemyDestroyed;
+		EventBus.OnNewWaveIsComing     += _onNewWaveIsComming;
+		EventBus.OnNewTurretWasCreated += _onNewTurretWasCreated;
+	}
+
+	protected void Start()
+	{		
+		_updateAvailableTurretsUIList(mPersistentData.mTurrets);
 	}
 
 	protected void _onHealthChanged(float value)
@@ -36,10 +42,25 @@ public class GameUIController: MonoBehaviour
 		mPersistentData.mCurrScore += reward;
 
 		mView.ScoreValue = mPersistentData.mCurrScore;
+
+		_updateAvailableTurretsUIList(mPersistentData.mTurrets);
 	}
 
 	protected void _onNewWaveIsComming(int waveIndex)
 	{
 		mView.WavesProgress = waveIndex;
+	}
+
+	protected void _onNewTurretWasCreated(uint turretPrice)
+	{
+		mPersistentData.mCurrScore = Math.Max(0, mPersistentData.mCurrScore - turretPrice);
+
+		_updateAvailableTurretsUIList(mPersistentData.mTurrets);		
+	}
+
+	protected void _updateAvailableTurretsUIList(TurretsCollection turrets)
+	{
+		/// TODO: REPLACE THIS UGLY CODE WITH A PROPER ONE
+		mView.TurretUIEntityView.IsEnabled = mPersistentData.mCurrScore >= turrets[Convert.ToInt32(mView.TurretUIEntityView.mTurretEntityId)].GetComponentInChildren<GunComponent>().mConfigs.mPrice;		
 	}
 }

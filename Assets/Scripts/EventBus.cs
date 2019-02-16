@@ -17,6 +17,10 @@ public static class EventBus
 
 	public static UnityAction        OnLevelFinished;
 
+	public static UnityAction<uint>  OnStartTurretPlacement;
+
+	public static UnityAction<uint>  OnNewTurretWasCreated;
+
 	public static void NotifyOnBaseHealthChanged(float health)
 	{
 		OnBaseHealthChanged?.Invoke(health);
@@ -35,5 +39,15 @@ public static class EventBus
 	public static void NotifyOnLevelFinished()
 	{
 		OnLevelFinished?.Invoke();
+	}
+
+	public static void NotifyOnStartTurretPlacement(uint turretEntityId)
+	{
+		OnStartTurretPlacement?.Invoke(turretEntityId);
+	}
+
+	public static void NotifyOnNewTurretWasCreated(uint turretPrice)
+	{
+		OnNewTurretWasCreated?.Invoke(turretPrice);
 	}
 }

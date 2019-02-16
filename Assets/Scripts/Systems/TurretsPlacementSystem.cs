@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Unity.Entities;
 
 
@@ -19,6 +20,8 @@ public class TurretsPlacementSystem : ComponentSystem
 
 	protected GamePersistentData mGamePersistentData;
 
+	protected int                mCurrSelectedTurretIndex;
+
 	protected override void OnStartRunning()
 	{
 		mTurretsRootTransform = new GameObject("TurretsList_Root").GetComponent<Transform>();
@@ -28,12 +31,17 @@ public class TurretsPlacementSystem : ComponentSystem
 		mGridCellPhysicsLayerMask = 1 << LayerMask.NameToLayer(GameSettings.mGridCellPhysicsLayerName);
 
 		mGamePersistentData = GameObject.FindObjectOfType<GamePersistentData>();
+
+		mCurrSelectedTurretIndex = -1;
+
+		EventBus.OnStartTurretPlacement += _onStartTurretPlacement;
 	}
 
 	protected override void OnUpdate()
 	{
 		if (mMainCamera == null ||
-			mGamePersistentData == null)
+			mGamePersistentData == null ||
+			mCurrSelectedTurretIndex < 0)
 		{
 			return;
 		}
@@ -70,10 +78,25 @@ public class TurretsPlacementSystem : ComponentSystem
 
 		Vector3 gridCellPosition = gridCellTransform.position;
 
-		GameObject selectedTurretPrefab = mGamePersistentData.mTurrets[mGamePersistentData.mCurrSelectedTurretIndex];
+		GameObject selectedTurretPrefab = mGamePersistentData.mTurrets[mCurrSelectedTurretIndex];
 
-		GameObject newTurret = GameObject.Instantiate(selectedTurretPrefab, gridCellPosition, Quaternion.identity, mTurretsRootTransform);
+		GameObject newTurretGO = GameObject.Instantiate(selectedTurretPrefab, gridCellPosition, Quaternion.identity, mTurretsRootTransform);
 
-		selectedGridCell.mTurretEntity = newTurret.GetComponentInChildren<GunComponent>();
+		GunComponent turretGunComponent = newTurretGO.GetComponentInChildren<GunComponent>();
+
+		selectedGridCell.mTurretEntity = turretGunComponent;
+
+		uint turretPrice = turretGunComponent.mConfigs.mPrice;
+
+		EventBus.NotifyOnNewTurretWasCreated(turretPrice);
+
+		mCurrSelectedTurretIndex = -1;
+	}
+
+	protected void _onStartTurretPlacement(uint turretEntityId)
+	{
+		mCurrSelectedTurretIndex = Convert.ToInt32(turretEntityId);
+
+		Debug.Log(mCurrSelectedTurretIndex);
 	}
 }

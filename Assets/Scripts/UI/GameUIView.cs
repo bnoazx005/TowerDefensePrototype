@@ -12,15 +12,19 @@ using UnityEngine.UI;
 
 public class GameUIView : MonoBehaviour
 {
-	public Text mScoreValueLabel;
+	public Text               mScoreValueLabel;
 
-	public Text mHealthValueLabel;
+	public Text               mHealthValueLabel;
 
-	public Text mWavesProgressLabel;
+	public Text               mWavesProgressLabel;
+
+	public TurretUIEntityView mTurretUIEntityView;
 
 	public uint ScoreValue { set => mScoreValueLabel.text = value.ToString(); }
 
 	public float HealthValue { set => mHealthValueLabel.text = value.ToString(); }
 
 	public int WavesProgress { set => mWavesProgressLabel.text = value.ToString(); }
+
+	public TurretUIEntityView TurretUIEntityView => mTurretUIEntityView;
 }
