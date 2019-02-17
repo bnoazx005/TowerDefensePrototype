@@ -8,7 +8,7 @@
 /// to destroy the entity
 /// </summary>
 
-public class DestroyedComponent : MonoBehaviour
+public class DestroyedComponent : BaseComponent
 {
 	public bool mShouldBeDestroyed = false;
 }

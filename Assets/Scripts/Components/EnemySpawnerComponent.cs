@@ -9,7 +9,7 @@ using UnityEngine;
 /// new enemies
 /// </summary>
 
-public class EnemySpawnerComponent : MonoBehaviour
+public class EnemySpawnerComponent : BaseComponent
 {
     public float             mSpawningInterval;
 

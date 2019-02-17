@@ -87,7 +87,7 @@ public class TurretsPlacementSystem : ComponentSystem
 
 	protected void _createNewTurret(GridCellComponent selectedGridCell)
 	{
-		Transform gridCellTransform = selectedGridCell.GetComponent<Transform>();
+		Transform gridCellTransform = selectedGridCell.CachedTransform;
 
 		Vector3 gridCellPosition = gridCellTransform.position;
 

@@ -49,7 +49,7 @@ public class EnemySpawningSystem : ComponentSystem
 			return;
 		}
 
-		Vector3 spawningPosition = enemySpawner.GetComponent<Transform>().position;
+		Vector3 spawningPosition = enemySpawner.CachedTransform.position;
 
 		GameObject currEnemyPrefab = null;
 

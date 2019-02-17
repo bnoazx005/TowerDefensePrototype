@@ -43,8 +43,8 @@ public class MoveEnemySystem : ComponentSystem
 
 			currSpeed = currEnemyConfig.mSpeed * deltaTime;
 
-			enemyTransform    = currEnemy.GetComponent<Transform>();
-			waypointTransform = currWaypoint.GetComponent<Transform>();
+			enemyTransform    = currEnemy.CachedTransform;
+			waypointTransform = currWaypoint.CachedTransform;
 
 			/// until the enemy doesn't reach the waypoint update its position
 			dir = waypointTransform.position - enemyTransform.position;

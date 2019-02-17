@@ -14,7 +14,7 @@ public class EnemyCollisionListener : MonoBehaviour
 {
 	protected void OnTriggerEnter(Collider collider)
 	{
-		BaseComponent baseComponent = collider.GetComponent<BaseComponent>();
+		PlayerBaseComponent baseComponent = collider.GetComponent<PlayerBaseComponent>();
 
 		// it's not a base object 
 		if (baseComponent == null)

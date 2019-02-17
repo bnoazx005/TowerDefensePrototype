@@ -8,7 +8,7 @@
 /// </summary>
 
 
-public class BulletComponent : MonoBehaviour
+public class BulletComponent : BaseComponent
 {
 	public float          mDamage;
 

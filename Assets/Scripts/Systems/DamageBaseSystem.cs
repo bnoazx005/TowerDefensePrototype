@@ -12,7 +12,7 @@ public class DamageBaseSystem : ComponentSystem
 {
 	protected struct TBaseGroup
 	{
-		public BaseComponent mBase;
+		public PlayerBaseComponent mBase;
 	}
 
 	protected override void OnStartRunning()
@@ -35,7 +35,7 @@ public class DamageBaseSystem : ComponentSystem
 		}	
 	}
 
-	protected bool _processSingleBase(BaseComponent baseComponent)
+	protected bool _processSingleBase(PlayerBaseComponent baseComponent)
 	{
 		if (baseComponent.mAttackingEntity == null)
 		{

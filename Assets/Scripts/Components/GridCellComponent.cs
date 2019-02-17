@@ -8,7 +8,7 @@
 /// for placing turrets
 /// </summary>
 
-public class GridCellComponent : MonoBehaviour
+public class GridCellComponent : BaseComponent
 {
 	public GunComponent mTurretEntity;
 

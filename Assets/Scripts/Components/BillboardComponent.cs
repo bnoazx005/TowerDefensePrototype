@@ -9,6 +9,6 @@
 /// to the object that should be always faced to a camera
 /// </summary>
 
-public class BillboardComponent : MonoBehaviour
+public class BillboardComponent : BaseComponent
 {
 }

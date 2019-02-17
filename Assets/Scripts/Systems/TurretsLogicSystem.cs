@@ -58,7 +58,7 @@ public class TurretsLogicSystem : ComponentSystem
 
 	protected void _processSingleTurret(GunComponent gun, ComponentGroupArray<TEnemyGroup> enemies)
 	{
-		Transform gunTransform = gun.GetComponent<Transform>();
+		Transform gunTransform = gun.CachedTransform;
 
 		BaseGunConfig gunConfigs = gun.mConfigs;
 
@@ -71,7 +71,7 @@ public class TurretsLogicSystem : ComponentSystem
 			return;
 		}
 
-		Transform enemyTransform = nearestEnemy.GetComponent<Transform>();
+		Transform enemyTransform = nearestEnemy.CachedTransform;
 
 		/// rotate the turret towards a target
 		gunTransform.rotation = QuaternionUtils.LookRotationXZ(enemyTransform.position - gunTransform.position);
@@ -107,7 +107,7 @@ public class TurretsLogicSystem : ComponentSystem
 		{
 			currEnemy = enemies[i].mEnemy;
 
-			enemyTransform = currEnemy.GetComponent<Transform>();
+			enemyTransform = currEnemy.CachedTransform;
 
 			currDistance = Vector3.Distance(gunPosition, enemyTransform.position);
 

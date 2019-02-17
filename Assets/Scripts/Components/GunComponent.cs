@@ -7,7 +7,7 @@
 /// The class is a component that contains data that is related with a gun
 /// </summary>
 
-public class GunComponent : MonoBehaviour
+public class GunComponent : BaseComponent
 {
 	public BaseGunConfig mConfigs;
 

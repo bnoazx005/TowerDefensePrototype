@@ -31,7 +31,7 @@ public class BillboardProcessingSystem : ComponentSystem
 
 		foreach (var entity in GetEntities<TBillboardGroup>())
 		{
-			billboardTransform = entity.mBillboard.GetComponent<Transform>();
+			billboardTransform = entity.mBillboard.CachedTransform;
 			
 			//billboardTransform.rotation = QuaternionUtils.LookRotationXZ(cameraPosition - billboardTransform.position);
 			billboardTransform.LookAt(cameraPosition, -Vector3.up);

@@ -34,7 +34,7 @@ public class ProcessBulletsSystem : ComponentSystem
 
 	protected bool _processSingleBullet(BulletComponent bullet, float deltaTime)
 	{
-		Transform bulletTransform = bullet.GetComponent<Transform>();
+		Transform bulletTransform = bullet.CachedTransform;
 
 		Vector3 dir = bullet.mTargetPosition - bulletTransform.position;
 

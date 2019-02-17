@@ -734,8 +734,8 @@ GameObject:
   - component: {fileID: 974799439}
   - component: {fileID: 974799443}
   - component: {fileID: 974799442}
-  - component: {fileID: 974799441}
   - component: {fileID: 974799440}
+  - component: {fileID: 974799441}
   m_Layer: 11
   m_Name: PlayerBase
   m_TagString: Untagged
@@ -779,7 +779,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 974799438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c28c86cfeed655749b08bb015dcbc563, type: 3}
+  m_Script: {fileID: 11500000, guid: 878952105ab93c84b9a5aa08534a2692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mHealth: 10
@@ -2225,7 +2225,6 @@ MonoBehaviour:
   mScoreValueLabel: {fileID: 1233641773}
   mHealthValueLabel: {fileID: 329675575}
   mWavesProgressLabel: {fileID: 1854456498}
-  mTurretUIEntityView: {fileID: 1646346567}
 --- !u!1 &2038305099
 GameObject:
   m_ObjectHideFlags: 0

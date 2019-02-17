@@ -4,13 +4,24 @@
 /// <summary>
 /// class BaseComponent
 ///
-/// The class is a component that defines a player's base
+/// The class is a base component. All components should derive this one
 /// </summary>
 
 
 public class BaseComponent : MonoBehaviour
 {
-	public float          mHealth;
+	protected Transform mCachedTransform;
 
-	public EnemyComponent mAttackingEntity;
+	public Transform CachedTransform
+	{
+		get
+		{
+			if (mCachedTransform == null)
+			{
+				mCachedTransform = GetComponent<Transform>();
+			}
+
+			return mCachedTransform;
+		}
+	}
 }

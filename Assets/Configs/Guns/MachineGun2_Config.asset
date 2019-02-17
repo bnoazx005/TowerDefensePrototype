@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MachineGun2_Config
   m_EditorClassIdentifier: 
   mDamage: 15
-  mRadius: 20
+  mRadius: 10
   mBulletSpeed: 50
-  mReloadInterval: 0.5
+  mReloadInterval: 0.15
   mBulletPrefab: {fileID: 6757325490293719540, guid: 9681e03916fc44142ab4419590c5769a,
     type: 3}
   mPrice: 250

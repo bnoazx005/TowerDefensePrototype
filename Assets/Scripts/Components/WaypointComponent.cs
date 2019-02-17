@@ -8,7 +8,7 @@
 /// single navigation node which is used for navigation
 /// </summary>
 
-public class WaypointComponent : MonoBehaviour
+public class WaypointComponent : BaseComponent
 {
     public WaypointComponent mNextWaypoint;
 }
