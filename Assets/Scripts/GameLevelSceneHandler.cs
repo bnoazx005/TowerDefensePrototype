@@ -12,7 +12,7 @@ public class GameLevelSceneHandler: BaseSceneHandler
 {
 	protected GameUIController mGameUIController;
 
-	protected override void _onBootSceneLoaded(Scene scene, LoadSceneMode mode)
+	public override void OnBeginScene()
 	{
 		mGameUIController = new GameUIController(FindObjectOfType<GameUIView>(), FindObjectOfType<GamePersistentData>());
 	}

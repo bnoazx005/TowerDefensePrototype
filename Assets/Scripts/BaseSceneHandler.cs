@@ -25,5 +25,12 @@ public abstract class BaseSceneHandler: MonoBehaviour
 		}
 	}
 
-	protected abstract void _onBootSceneLoaded(Scene scene, LoadSceneMode mode);
+	public abstract void OnBeginScene();
+
+	protected void _onBootSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		SceneManager.sceneLoaded -= _onBootSceneLoaded;
+
+		OnBeginScene();
+	}
 }

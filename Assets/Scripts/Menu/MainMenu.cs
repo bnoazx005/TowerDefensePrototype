@@ -31,5 +31,7 @@ public class MainMenu: BaseMenu
 
         mMenuContext.SetMenu(mMenuContext.PauseMenu);
         mMenuContext.Hide();
+
+        mMenuContext.NotifyOnStartGame();
     }
 }

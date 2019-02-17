@@ -10,7 +10,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuSceneHandler: BaseSceneHandler
 {
-	protected override void _onBootSceneLoaded(Scene scene, LoadSceneMode mode)
+	protected ISceneLoader mSceneLoader;
+
+	public override void OnBeginScene()
 	{
 		IMenuContext menuContext = FindObjectOfType<MenuContext>();
 
