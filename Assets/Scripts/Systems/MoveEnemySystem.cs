@@ -53,6 +53,9 @@ public class MoveEnemySystem : ComponentSystem
 
 			dir.Normalize();
 
+			/// rotate an enemy along its move direction
+			enemyTransform.rotation = Quaternion.RotateTowards(enemyTransform.rotation, QuaternionUtils.LookRotationXZ(dir), currEnemyConfig.mRotationSpeed * deltaTime);
+
 			if (distance > 0.1f) /// epsilon
 			{
 				enemyTransform.position += dir * currSpeed;

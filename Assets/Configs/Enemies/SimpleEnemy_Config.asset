@@ -16,3 +16,4 @@ MonoBehaviour:
   mSpeed: 3.5
   mDamage: 50
   mReward: 10
+  mRotationSpeed: 100
