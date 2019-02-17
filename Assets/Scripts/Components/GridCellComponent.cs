@@ -11,4 +11,8 @@
 public class GridCellComponent : MonoBehaviour
 {
 	public GunComponent mTurretEntity;
+
+	public GameObject   mEmptyGridView;
+
+	public GameObject   mFilledGridView;
 }

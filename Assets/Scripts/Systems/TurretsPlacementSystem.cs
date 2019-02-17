@@ -53,19 +53,32 @@ public class TurretsPlacementSystem : ComponentSystem
 
 		if (!Physics.Raycast(ray, out hitResult,  float.MaxValue, mGridCellPhysicsLayerMask))
 		{
+			if (Input.GetKeyDown(KeyCode.Mouse0))
+			{
+				mCurrSelectedTurretIndex = -1; // if a player clicks somewhere else then a cell
+
+				return;
+			}
+
 			return;
 		}
+
+		GridCellComponent gridCell = hitResult.collider.GetComponent<GridCellComponent>();
+
+		/// update cell's appearance
+		gridCell.mEmptyGridView.SetActive(false);
+		gridCell.mFilledGridView.SetActive(true);
 
 		if (!Input.GetKeyDown(KeyCode.Mouse0))
 		{
 			return;
 		}
 
-		GridCellComponent gridCell = hitResult.collider.GetComponent<GridCellComponent>();
-
 		// if a player selected and clicked over a cell create a new turret if the cell is empty
 		if (gridCell.mTurretEntity != null)
 		{
+			mCurrSelectedTurretIndex = -1; // if a player clicks over a filled cell disable placement mode
+
 			return;
 		}
 
@@ -79,8 +92,7 @@ public class TurretsPlacementSystem : ComponentSystem
 		Vector3 gridCellPosition = gridCellTransform.position;
 
 		GameObject selectedTurretPrefab = mGamePersistentData.mTurrets[mCurrSelectedTurretIndex];
-
-		GameObject newTurretGO = GameObject.Instantiate(selectedTurretPrefab, gridCellPosition, Quaternion.identity, mTurretsRootTransform);
+		GameObject newTurretGO          = GameObject.Instantiate(selectedTurretPrefab, gridCellPosition, Quaternion.identity, mTurretsRootTransform);
 
 		GunComponent turretGunComponent = newTurretGO.GetComponentInChildren<GunComponent>();
 
