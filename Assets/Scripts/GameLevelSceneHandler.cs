@@ -16,6 +16,8 @@ public class GameLevelSceneHandler: BaseSceneHandler
 	{
 		mGameUIController = new GameUIController(FindObjectOfType<GameUIView>(), FindObjectOfType<GamePersistentData>());
 
-		Debug.Log("Game Level Scene Handler call");
+		IMenuContext menuContext = FindObjectOfType<MenuContext>();
+
+		menuContext.Hide();
 	}
 }

@@ -20,6 +20,8 @@ public class GameController: MonoBehaviour
 
 		mMenuContext = FindObjectOfType<MenuContext>();
 
+		mMenuContext.Init();
+
 		mMenuContext.OnStartGame += _onStartNewGame;
 		mMenuContext.OnPauseGame += _onShowGamePause;
 

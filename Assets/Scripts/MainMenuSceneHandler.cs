@@ -14,7 +14,6 @@ public class MainMenuSceneHandler: BaseSceneHandler
 	{
 		IMenuContext menuContext = FindObjectOfType<MenuContext>();
 		
-		menuContext.Init();
 		menuContext.SetMenu(menuContext.MainMenu);
 	}
 }
