@@ -28,6 +28,10 @@ public class GameUIController
 		_updateAvailableTurretsUIList(mPersistentData.mTurrets);
 
 		mView.ScoreValue = mPersistentData.mCurrScore;
+
+		mView.OnPauseGameButtonClicked      += _onPauseGameTime;
+		mView.OnNormalTimeGameButtonClicked += _onSetNormalGameTime;
+		mView.OnSpeedUpGameButtonClicked    += _onSpeedUpGameTime;
 	}
 
 	~GameUIController()
@@ -36,6 +40,10 @@ public class GameUIController
 		EventBus.OnEnemyDestroyed      -= _onEnemyDestroyed;
 		EventBus.OnNewWaveIsComing     -= _onNewWaveIsComming;
 		EventBus.OnNewTurretWasCreated -= _onNewTurretWasCreated;
+
+		mView.OnPauseGameButtonClicked      -= _onPauseGameTime;
+		mView.OnNormalTimeGameButtonClicked -= _onSetNormalGameTime;
+		mView.OnSpeedUpGameButtonClicked    -= _onSpeedUpGameTime;
 	}
 
 	protected void _onHealthChanged(float value)
@@ -84,5 +92,20 @@ public class GameUIController
 
 			currTurretUISlot.IsEnabled = (currTurretGO != null) && (currScore >= currTurretGO.GetComponentInChildren<GunComponent>().mConfigs.mPrice);
 		}		
+	}
+
+	protected void _onPauseGameTime()
+	{
+		Time.timeScale = 0.0f;
+	}
+
+	protected void _onSetNormalGameTime()
+	{
+		Time.timeScale = 1.0f;		
+	}
+
+	protected void _onSpeedUpGameTime()
+	{
+		Time.timeScale = 3.0f;		
 	}
 }
