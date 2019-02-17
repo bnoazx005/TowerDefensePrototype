@@ -9,27 +9,31 @@ using UnityEngine;
 /// using available data
 /// </summary>
 
-public class GameUIController: MonoBehaviour
+public class GameUIController
 {
 	protected GameUIView         mView;
 
 	protected GamePersistentData mPersistentData;
 
-	protected void Awake()
+	public GameUIController(GameUIView view, GamePersistentData data)
 	{
-		mView = GameObject.FindObjectOfType<GameUIView>();
-
-		mPersistentData = GameObject.FindObjectOfType<GamePersistentData>();
+		mView           = view ?? throw new ArgumentNullException("view");
+		mPersistentData = data ?? throw new ArgumentNullException("data");
 
 		EventBus.OnBaseHealthChanged   += _onHealthChanged;
 		EventBus.OnEnemyDestroyed      += _onEnemyDestroyed;
 		EventBus.OnNewWaveIsComing     += _onNewWaveIsComming;
 		EventBus.OnNewTurretWasCreated += _onNewTurretWasCreated;
+
+		_updateAvailableTurretsUIList(mPersistentData.mTurrets);
 	}
 
-	protected void Start()
+	~GameUIController()
 	{		
-		_updateAvailableTurretsUIList(mPersistentData.mTurrets);
+		EventBus.OnBaseHealthChanged   -= _onHealthChanged;
+		EventBus.OnEnemyDestroyed      -= _onEnemyDestroyed;
+		EventBus.OnNewWaveIsComing     -= _onNewWaveIsComming;
+		EventBus.OnNewTurretWasCreated -= _onNewTurretWasCreated;
 	}
 
 	protected void _onHealthChanged(float value)
