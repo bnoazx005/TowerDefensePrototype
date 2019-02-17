@@ -12,13 +12,13 @@ using UnityEngine.UI;
 
 public class GameUIView : MonoBehaviour
 {
-	public Text               mScoreValueLabel;
+	public Text                    mScoreValueLabel;
 
-	public Text               mHealthValueLabel;
+	public Text                    mHealthValueLabel;
 
-	public Text               mWavesProgressLabel;
+	public Text                    mWavesProgressLabel;
 
-	public TurretUIEntityView mTurretUIEntityView;
+	protected TurretUIEntityView[] mTurretUIEntityViewsArray;
 
 	public uint ScoreValue { set => mScoreValueLabel.text = value.ToString(); }
 
@@ -26,5 +26,16 @@ public class GameUIView : MonoBehaviour
 
 	public int WavesProgress { set => mWavesProgressLabel.text = value.ToString(); }
 
-	public TurretUIEntityView TurretUIEntityView => mTurretUIEntityView;
+	public TurretUIEntityView[] TurretUIEntityViewArray
+	{
+		get
+		{
+			if (mTurretUIEntityViewsArray == null)
+			{
+				mTurretUIEntityViewsArray = FindObjectsOfType<TurretUIEntityView>();
+			}
+
+			return mTurretUIEntityViewsArray;
+		}
+	}
 }

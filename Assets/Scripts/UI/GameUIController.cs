@@ -64,7 +64,21 @@ public class GameUIController
 
 	protected void _updateAvailableTurretsUIList(TurretsCollection turrets)
 	{
-		/// TODO: REPLACE THIS UGLY CODE WITH A PROPER ONE
-		mView.TurretUIEntityView.IsEnabled = mPersistentData.mCurrScore >= turrets[Convert.ToInt32(mView.TurretUIEntityView.mTurretEntityId)].GetComponentInChildren<GunComponent>().mConfigs.mPrice;		
+		TurretUIEntityView[] turretsUISlots = mView.TurretUIEntityViewArray;
+
+		TurretUIEntityView currTurretUISlot = null;
+
+		uint currScore = mPersistentData.mCurrScore;
+
+		GameObject currTurretGO = null;
+
+		for (int i = 0; i < turretsUISlots.Length; ++i)
+		{
+			currTurretUISlot = turretsUISlots[i];
+
+			currTurretGO = turrets[Convert.ToInt32(currTurretUISlot.mTurretEntityId)];
+
+			currTurretUISlot.IsEnabled = (currTurretGO != null) && (currScore >= currTurretGO.GetComponentInChildren<GunComponent>().mConfigs.mPrice);
+		}		
 	}
 }

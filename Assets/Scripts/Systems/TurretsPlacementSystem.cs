@@ -108,7 +108,5 @@ public class TurretsPlacementSystem : ComponentSystem
 	protected void _onStartTurretPlacement(uint turretEntityId)
 	{
 		mCurrSelectedTurretIndex = Convert.ToInt32(turretEntityId);
-
-		Debug.Log(mCurrSelectedTurretIndex);
 	}
 }
