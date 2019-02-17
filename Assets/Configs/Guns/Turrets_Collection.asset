@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Turrets_Collection
   m_EditorClassIdentifier: 
   mTurretsPrefabs:
-  - {fileID: 4875052963071232681, guid: 11748bab55e95b4408b219c6362076a1, type: 3}
+  - {fileID: 8000144335951411824, guid: ac7f8197ec1db764782025dd42d32c54, type: 3}

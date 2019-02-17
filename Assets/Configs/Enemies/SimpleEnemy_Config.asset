@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SimpleEnemy_Config
   m_EditorClassIdentifier: 
   mHealth: 100
-  mSpeed: 2.5
+  mSpeed: 3.5
   mDamage: 50
   mReward: 10

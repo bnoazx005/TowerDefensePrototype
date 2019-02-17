@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Wave0_Level0
   m_EditorClassIdentifier: 
   mEnemiesCount: 3
-  mEnemyPrefab: {fileID: 2775505320179285595, guid: c8290b3b5eb16e44fb55436f65e975c5,
-    type: 3}
+  mEnemyPrefab: {fileID: 1935387915, guid: 7bc78a739f304bf4bb6fd75ac4579f9b, type: 3}
