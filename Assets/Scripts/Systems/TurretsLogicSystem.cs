@@ -80,7 +80,7 @@ public class TurretsLogicSystem : ComponentSystem
 		if (gun.mElapsedReloadingTime > gunConfigs.mReloadInterval)
 		{
 			/// create a deffered request for instantiation of a new bullet
-			mInstantiationBuffer.Add(new TInstantiationCommand { mGunPosition = gunTransform.position, mGunConfigs = gunConfigs, mEnemyTargetPosition = enemyTransform.position });
+			mInstantiationBuffer.Add(new TInstantiationCommand { mGunPosition = gun.mBulletSpawTransform.position, mGunConfigs = gunConfigs, mEnemyTargetPosition = enemyTransform.position });
 
 			gun.mElapsedReloadingTime = 0.0f; // starts to wait for an end of a reloading cycle
 

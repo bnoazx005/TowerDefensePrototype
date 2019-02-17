@@ -12,4 +12,6 @@ public class GunComponent : MonoBehaviour
 	public BaseGunConfig mConfigs;
 
 	public float         mElapsedReloadingTime = float.MaxValue; /// float.MaxValue is used to allow to make a first shoot
+
+	public Transform     mBulletSpawTransform;
 }
