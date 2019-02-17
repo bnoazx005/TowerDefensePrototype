@@ -15,6 +15,10 @@ public class TurretUIEntityView : MonoBehaviour
 {
 	public uint      mTurretEntityId;
 
+	public Image     mPreviewImage;
+
+	public Text      mPriceLabel;
+
 	protected Button mCachedButton;
 
 	protected void Awake()
@@ -33,6 +37,10 @@ public class TurretUIEntityView : MonoBehaviour
 	}
 
 	public bool IsEnabled { set => CachedButton.interactable = value; }
+
+	public Sprite PreviewImage { set => mPreviewImage.sprite = value; }
+
+	public uint Price { set => mPriceLabel.text = value.ToString(); }
 
 	public Button CachedButton
 	{

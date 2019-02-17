@@ -84,13 +84,23 @@ public class GameUIController
 
 		GameObject currTurretGO = null;
 
+		int entityId = -1;
+
+		uint currGunPrice = 0;
+
 		for (int i = 0; i < turretsUISlots.Length; ++i)
 		{
 			currTurretUISlot = turretsUISlots[i];
 
-			currTurretGO = turrets[Convert.ToInt32(currTurretUISlot.mTurretEntityId)];
+			entityId = Convert.ToInt32(currTurretUISlot.mTurretEntityId);
 
-			currTurretUISlot.IsEnabled = (currTurretGO != null) && (currScore >= currTurretGO.GetComponentInChildren<GunComponent>().mConfigs.mPrice);
+			currTurretGO = turrets[entityId];
+
+			currGunPrice = currTurretGO.GetComponentInChildren<GunComponent>().mConfigs.mPrice;
+
+			currTurretUISlot.IsEnabled    = (currTurretGO != null) && (currScore >= currGunPrice);
+			currTurretUISlot.PreviewImage = turrets.GetPreviewImage(entityId);
+			currTurretUISlot.Price        = currGunPrice;
 		}		
 	}
 

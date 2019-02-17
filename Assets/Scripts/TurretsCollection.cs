@@ -11,8 +11,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Turrets_Collection", menuName = "Turrets Collection", order = 1)]
 public class TurretsCollection: ScriptableObject
 {
+	[Serializable]
+	public struct TTurretEntity
+	{
+		public GameObject mPrefab;
+
+		public Sprite     mPreviewImage;
+	}
+
 	[SerializeField]
-	protected List<GameObject> mTurretsPrefabs = new List<GameObject>();
+	protected List<TTurretEntity> mTurretsPrefabs = new List<TTurretEntity>();
+
+	public Sprite GetPreviewImage(int index)
+	{
+		if (index >= mTurretsPrefabs.Count)
+		{
+			throw new IndexOutOfRangeException("index");
+		}
+
+		return mTurretsPrefabs[index].mPreviewImage;
+	}
 
 	public GameObject this[int index]
 	{
@@ -23,7 +41,7 @@ public class TurretsCollection: ScriptableObject
 				throw new IndexOutOfRangeException("index");
 			}
 
-			return mTurretsPrefabs[index];
+			return mTurretsPrefabs[index].mPrefab;
 		}
 	}
 }
