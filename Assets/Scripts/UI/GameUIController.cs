@@ -26,6 +26,8 @@ public class GameUIController
 		EventBus.OnNewTurretWasCreated += _onNewTurretWasCreated;
 
 		_updateAvailableTurretsUIList(mPersistentData.mTurrets);
+
+		mView.ScoreValue = mPersistentData.mCurrScore;
 	}
 
 	~GameUIController()
@@ -58,6 +60,8 @@ public class GameUIController
 	protected void _onNewTurretWasCreated(uint turretPrice)
 	{
 		mPersistentData.mCurrScore = Math.Max(0, mPersistentData.mCurrScore - turretPrice);
+
+		mView.ScoreValue = mPersistentData.mCurrScore;
 
 		_updateAvailableTurretsUIList(mPersistentData.mTurrets);		
 	}
