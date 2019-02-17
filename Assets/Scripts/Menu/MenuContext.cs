@@ -12,13 +12,11 @@ using UnityEngine.UI;
 
 public class MenuContext: MonoBehaviour, IMenuContext
 {
-    public event UnityAction<bool> OnSoundOptionValueChanged;
-
     public event UnityAction       OnStartGame;
 
     public event UnityAction<bool> OnPauseGame;
 
-    public event UnityAction       OnQuitToGameMap;
+    public event UnityAction       OnQuitGame;
 
     public event UnityAction       OnRetryLevel;
 
@@ -89,16 +87,11 @@ public class MenuContext: MonoBehaviour, IMenuContext
         mVictoryMenu?.Hide();
     }
 
-    public void OnStartGameButtonClicked()
+    public void NotifyOnStartGameButtonClicked()
     {
-        mCurrActiveMenu.OnStartGameButtonClicked();
+        mCurrActiveMenu.NotifyOnStartGameButtonClicked();
     }
     
-    public void NotifyOnSoundOptionValueChanged(bool value)
-    {
-        OnSoundOptionValueChanged?.Invoke(value);
-    }
-
     public void NotifyOnStartGame()
     {
         OnStartGame?.Invoke();
@@ -112,6 +105,11 @@ public class MenuContext: MonoBehaviour, IMenuContext
     public void NotifyOnRetryLevel()
     {
         OnRetryLevel?.Invoke();
+    }
+    
+    public void NotifyOnQuitGame()
+    {
+        OnQuitGame?.Invoke();
     }
 
     protected void Update()

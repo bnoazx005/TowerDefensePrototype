@@ -43,7 +43,7 @@ public class BaseMenu: MonoBehaviour, IMenu
         mCachedTransform.gameObject.SetActive(false);
     }
 
-    public virtual void OnStartGameButtonClicked() {}
+    public virtual void NotifyOnStartGameButtonClicked() {}
 
     public virtual void OnInputEvent()
     {

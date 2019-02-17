@@ -17,15 +17,15 @@ public class MainMenu: BaseMenu
     {
         base.Init(menuContext);
 
-        mStartGameButton?.onClick.AddListener(OnStartGameButtonClicked);
+        mStartGameButton?.onClick.AddListener(NotifyOnStartGameButtonClicked);
     }
 
     private void OnDestroy()
     {
-        mStartGameButton?.onClick.RemoveListener(OnStartGameButtonClicked);
+        mStartGameButton?.onClick.RemoveListener(NotifyOnStartGameButtonClicked);
     }
 
-    public override void OnStartGameButtonClicked()
+    public override void NotifyOnStartGameButtonClicked()
     {
         Debug.Log("[Main Menu] Main menu -> Game");
 

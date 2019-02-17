@@ -24,6 +24,7 @@ public class GameController: MonoBehaviour
 
 		mMenuContext.OnStartGame += _onStartNewGame;
 		mMenuContext.OnPauseGame += _onShowGamePause;
+		mMenuContext.OnQuitGame  += _onQuitGame;
 
 		EventBus.OnDefeat        += _onDefeat;
 		EventBus.OnLevelFinished += _onVictory;	
@@ -33,6 +34,7 @@ public class GameController: MonoBehaviour
 	{
 		mMenuContext.OnStartGame -= _onStartNewGame;
 		mMenuContext.OnPauseGame -= _onShowGamePause;	
+		mMenuContext.OnQuitGame  -= _onQuitGame;
 
 		EventBus.OnDefeat        -= _onDefeat;
 		EventBus.OnLevelFinished -= _onVictory;	
@@ -56,5 +58,10 @@ public class GameController: MonoBehaviour
 	protected void _onVictory()
 	{
 		mMenuContext.SetMenu(mMenuContext.VictoryScreenMenu);		
+	}
+
+	protected void _onQuitGame()
+	{
+		Application.Quit();
 	}
 }

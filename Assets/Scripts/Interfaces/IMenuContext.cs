@@ -10,13 +10,13 @@ using UnityEngine.Events;
 
 public interface IMenuContext
 {
-	event UnityAction<bool> OnSoundOptionValueChanged;
-
 	event UnityAction OnStartGame;
 
 	event UnityAction<bool> OnPauseGame;
 
 	event UnityAction OnRetryLevel;
+
+	event UnityAction OnQuitGame;
 
 	/// <summary>
 	/// The method initializes an internal state of a menu context
@@ -41,15 +41,15 @@ public interface IMenuContext
 
 	void Hide();
 
-	void OnStartGameButtonClicked();
-
-	void NotifyOnSoundOptionValueChanged(bool value);
+	void NotifyOnStartGameButtonClicked();
 
 	void NotifyOnStartGame();
 
 	void NotifyOnPauseGame(bool isPaused);
 
 	void NotifyOnRetryLevel();
+
+	void NotifyOnQuitGame();
 
 	IMenu MainMenu { get; }
 
@@ -77,7 +77,7 @@ public interface IMenu
 
 	void Hide();
 
-	void OnStartGameButtonClicked();
+	void NotifyOnStartGameButtonClicked();
 
 	void OnInputEvent();
 
