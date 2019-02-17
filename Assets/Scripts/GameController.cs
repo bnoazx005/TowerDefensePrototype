@@ -15,7 +15,7 @@ public class GameController: MonoBehaviour
 	protected IMenuContext mMenuContext;
 
 	protected void Awake()
-	{		
+	{
 		mSceneLoader = new SceneLoader(this, FindObjectOfType<LoadingScreenView>());
 
 		mMenuContext = FindObjectOfType<MenuContext>();

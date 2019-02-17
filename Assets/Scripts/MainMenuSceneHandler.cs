@@ -10,12 +10,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuSceneHandler: BaseSceneHandler
 {
-	protected ISceneLoader mSceneLoader;
-
 	public override void OnBeginScene()
 	{
 		IMenuContext menuContext = FindObjectOfType<MenuContext>();
-
+		
 		menuContext.Init();
 		menuContext.SetMenu(menuContext.MainMenu);
 	}

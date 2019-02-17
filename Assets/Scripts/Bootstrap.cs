@@ -3,19 +3,20 @@ using UnityEngine;
 
 public class Bootstrap
 {
-	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-	public static void Main()
-	{
-		/// Find SceneHandler's object and initialize it
-		BaseSceneHandler sceneHandler = GameObject.FindObjectOfType<BaseSceneHandler>();
+	// [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+	// public static void Main()
+	// {
+	// 	Debug.Log("tttt");
+	// 	// Find SceneHandler's object and initialize it
+	// 	BaseSceneHandler sceneHandler = GameObject.FindObjectOfType<BaseSceneHandler>();
 
-		if (sceneHandler == null)
-		{
-			Debug.LogError("[Bootstrap] There is no scene handler attached to the scene");
+	// 	if (sceneHandler == null)
+	// 	{
+	// 		Debug.LogError("[Bootstrap] There is no scene handler attached to the scene");
 
-			return;
-		}
+	// 		return;
+	// 	}
 
-		sceneHandler.Initialize();
-	}
+	// 	sceneHandler.Initialize();
+	// }
 }

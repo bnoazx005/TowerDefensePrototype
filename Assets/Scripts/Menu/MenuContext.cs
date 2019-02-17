@@ -31,7 +31,7 @@ public class MenuContext: MonoBehaviour, IMenuContext
     protected IMenu mCurrActiveMenu;
 
     protected IMenu mCurrParentMenu;
-
+    
     public virtual void Init()
     {
         mMainMenu?.Init(this);

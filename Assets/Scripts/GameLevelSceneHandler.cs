@@ -15,5 +15,7 @@ public class GameLevelSceneHandler: BaseSceneHandler
 	public override void OnBeginScene()
 	{
 		mGameUIController = new GameUIController(FindObjectOfType<GameUIView>(), FindObjectOfType<GamePersistentData>());
+
+		Debug.Log("Game Level Scene Handler call");
 	}
 }

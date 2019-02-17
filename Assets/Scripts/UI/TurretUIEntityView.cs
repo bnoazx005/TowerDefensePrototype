@@ -19,14 +19,12 @@ public class TurretUIEntityView : MonoBehaviour
 
 	protected void Awake()
 	{
-		mCachedButton = GetComponent<Button>();
-
-		mCachedButton.onClick.AddListener(_onTurretEntityWasSelected);
+		CachedButton.onClick.AddListener(_onTurretEntityWasSelected);
 	}
 
 	protected void OnDestroy()
 	{
-		mCachedButton.onClick.RemoveListener(_onTurretEntityWasSelected);
+		CachedButton.onClick.RemoveListener(_onTurretEntityWasSelected);
 	}
 
 	protected void _onTurretEntityWasSelected()
@@ -34,5 +32,19 @@ public class TurretUIEntityView : MonoBehaviour
 		EventBus.NotifyOnStartTurretPlacement(mTurretEntityId);
 	}
 
-	public bool IsEnabled { set => mCachedButton.interactable = value; }
+	public bool IsEnabled { set => CachedButton.interactable = value; }
+
+	public Button CachedButton
+	{
+		get
+		{
+			/// caching script's component
+			if (mCachedButton == null)
+			{
+				mCachedButton = GetComponent<Button>();
+			}
+
+			return mCachedButton;
+		}
+	}
 }
