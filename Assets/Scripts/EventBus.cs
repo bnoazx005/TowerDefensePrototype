@@ -21,10 +21,12 @@ public static class EventBus
 
 	public static UnityAction<uint>  OnNewTurretWasCreated;
 
+	public static UnityAction        OnDefeat;
+
 	public static void NotifyOnBaseHealthChanged(float health)
 	{
 		OnBaseHealthChanged?.Invoke(health);
-	}	
+	}
 
 	public static void NotifyOnEnemyDestroyed(uint reward)
 	{
@@ -49,5 +51,10 @@ public static class EventBus
 	public static void NotifyOnNewTurretWasCreated(uint turretPrice)
 	{
 		OnNewTurretWasCreated?.Invoke(turretPrice);
+	}
+
+	public static void NotifyOnDefeat()
+	{
+		OnDefeat?.Invoke();
 	}
 }

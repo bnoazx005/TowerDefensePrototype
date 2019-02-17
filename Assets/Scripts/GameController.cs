@@ -22,12 +22,18 @@ public class GameController: MonoBehaviour
 
 		mMenuContext.OnStartGame += _onStartNewGame;
 		mMenuContext.OnPauseGame += _onShowGamePause;
+
+		EventBus.OnDefeat        += _onDefeat;
+		EventBus.OnLevelFinished += _onVictory;	
 	}
 
 	protected void OnDestroy()
 	{
 		mMenuContext.OnStartGame -= _onStartNewGame;
-		mMenuContext.OnPauseGame -= _onShowGamePause;		
+		mMenuContext.OnPauseGame -= _onShowGamePause;	
+
+		EventBus.OnDefeat        -= _onDefeat;
+		EventBus.OnLevelFinished -= _onVictory;	
 	}
 
 	protected void _onStartNewGame()
@@ -38,5 +44,15 @@ public class GameController: MonoBehaviour
 	protected void _onShowGamePause(bool isPaused)
 	{
 		Time.timeScale = isPaused ? 0.0f : 1.0f;
+	}
+
+	protected void _onDefeat()
+	{
+		mMenuContext.SetMenu(mMenuContext.GameOverScreenMenu);
+	}
+
+	protected void _onVictory()
+	{
+		mMenuContext.SetMenu(mMenuContext.VictoryScreenMenu);		
 	}
 }

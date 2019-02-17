@@ -57,6 +57,8 @@ public interface IMenuContext
 
 	IMenu GameOverScreenMenu { get; }
 
+	IMenu VictoryScreenMenu { get; }
+
 	IMenu ParentMenu { get; }
 }
 

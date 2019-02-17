@@ -28,6 +28,8 @@ public class MenuContext: MonoBehaviour, IMenuContext
 
     public BaseMenu mGameOverMenu;
 
+    public BaseMenu mVictoryMenu;
+
     protected IMenu mCurrActiveMenu;
 
     protected IMenu mCurrParentMenu;
@@ -37,6 +39,7 @@ public class MenuContext: MonoBehaviour, IMenuContext
         mMainMenu?.Init(this);
         mPauseMenu?.Init(this);
         mGameOverMenu?.Init(this);
+        mVictoryMenu?.Init(this);
         
         Hide();
 
@@ -83,6 +86,7 @@ public class MenuContext: MonoBehaviour, IMenuContext
         MainMenu?.Hide();
         mPauseMenu?.Hide();
         mGameOverMenu?.Hide();
+        mVictoryMenu?.Hide();
     }
 
     public void OnStartGameButtonClicked()
@@ -138,6 +142,8 @@ public class MenuContext: MonoBehaviour, IMenuContext
             return mGameOverMenu;
         }
     }
+
+    public IMenu VictoryScreenMenu => mVictoryMenu;
 
     public IMenu ParentMenu
     {

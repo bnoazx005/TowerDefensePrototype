@@ -57,7 +57,7 @@ public class DamageBaseSystem : ComponentSystem
 
 		if (currHealth < 1e-3f)
 		{
-			Debug.Log("GAME OVER"); // TODO: replace with proper UI message
+			EventBus.NotifyOnDefeat();
 
 			return false;
 		}
