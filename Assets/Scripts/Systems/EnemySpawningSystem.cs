@@ -17,6 +17,11 @@ public class EnemySpawningSystem : ComponentSystem
 		public EnemySpawnerComponent mEnemySpawner;
 	}
 
+	protected struct TEnemyGroup
+	{
+		public EnemyComponent mEnemy;
+	}
+
 	protected override void OnStartRunning()
 	{
 		mEnemiesRootTransform = new GameObject("EnemiesList_Root").GetComponent<Transform>();
@@ -42,9 +47,13 @@ public class EnemySpawningSystem : ComponentSystem
 			return;
 		}
 
+		/// last wave and all enemies were destroyed
 		if (currWaveIndex >= enemySpawner.mWavesArray.Count)
 		{
-			EventBus.NotifyOnLevelFinished();
+			if (GetEntities<TEnemyGroup>().Length < 1)
+			{
+				EventBus.NotifyOnLevelFinished();				
+			}
 
 			return;
 		}
